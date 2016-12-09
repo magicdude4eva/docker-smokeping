@@ -1,0 +1,253 @@
+*** Targets ***
+
+probe = FPing
+
+menu = Top
+title = SmokePing - Network Latency Grapher
+remark = Welcome to the SmokePing Network Latency Grapher website. \
+         Here you will learn all about the latency of our network.
+
+
++ Local
+menu = Local
+title = Local Network
+
+++ MyRouter
+menu = My Router
+title = My Router 172.16.0.1 ICMP Latency
+host = 172.16.0.1
+
+
++ Search
+menu = Search
+title = Search Latency
+probe = Curl
+
+++ Bing
+menu = Bing
+title = www.bing.com HTTP Latency
+host = www.bing.com
+
+++ GoogleHTTP
+menu = GoogleHTTP
+title = www.google.com HTTP Latency
+host = www.google.com
+
+++ Yahoo
+menu = Yahoo
+title = www.yahoo.com HTTP Latency
+host = www.yahoo.com
+
+
++ Social
+menu = Social
+title = Social Latency
+probe = Curl
+
+++ FacebookHTTP
+menu = FacebookHTTP
+title = www.facebook.com HTTP Latency
+host = www.facebook.com
+
+++ Twitter
+menu = Twitter
+title = twitter.com HTTP Latency
+host = twitter.com
+
+++ Wordpress
+menu = Wordpress
+title = wordpress.com HTTP Latency
+host = wordpress.com
+
+++ Youtube
+menu = YouTube
+title = YouTube HTTP Latency
+host = youtube.com
+
+
++ Gaming
+menu = Gaming
+title = Gaming Latency
+probe = Curl
+
+++ Steam
+menu = Steam
+title = store.steampowered.com HTTP Latency
+host = store.steampowered.com
+
+++ SteamCommunity
+menu = SteamCommunity
+title = steamcommunity.com HTTP Latency
+host = steamcommunity.com
+
+
++ Europe
+menu = Europe
+title = European Connectivity
+probe = Curl
+
+++ CernIXP
+menu = CernIXP
+title = Cern Internet eXchange Point HTTP Latency
+host = cixp.web.cern.ch
+
+++ BBC
+menu = BBC
+title = bbc.co.uk HTTP Latency
+host = bbc.co.uk
+
++ USA
+menu = North America
+title = North American Connectivity
+probe = Curl
+
+++ MIT
+menu = MIT
+title = Massachusetts Institute of Technology Webserver
+host = web.mit.edu
+
+++ Sun
+menu = Sun Microsystems
+title = Sun Microsystems Webserver
+host = www.oracle.com/us/sun
+
++ DNS
+menu = DNS
+title = DNS Latency
+
+++ GoogleDNS1
+menu = Google DNS 1
+title = Google DNS1 - 8.8.8.8
+host = 8.8.8.8
+
+++ GoogleDNS2
+menu = Google DNS 2
+title = Google DNS2 - 8.8.4.4
+host = 8.8.4.4
+
+++ OpenDNS1
+menu = OpenDNS 1
+title = OpenDNS 1 - 208.67.222.222
+host = 208.67.222.222
+
+++ OpenDNS2
+menu = OpenDNS 2
+title = OpenDNS 2 - 208.67.220.220
+host = 208.67.220.220
+
+
++ speedtest
+menu = Speedtest.net
+title = Speedtest.net probes
+
+++ download_Seacom_Johannesburg
+menu = Download Seacom (JHB)
+title = Download from Seacom Ltd (Johannesburg, South Africa) [3.21 km]
+probe = speedtest-download
+server = 5889
+measurement = download
+host = dummy.com
+
+++ upload_Seacom_Johannesburg
+menu = Upload Seacom (JHB)
+title = Upload to Seacom Ltd (Johannesburg, South Africa) [3.21 km]
+probe = speedtest-upload
+server = 5889
+measurement = upload
+host = dummy.com
+
+++ download_Telkom_SAIX_Randburg
+menu = Download Telkom (Randburg)
+title = Download from Telkom SA (SAIX) (Randburg, South Africa) [9.68 km]
+probe = speedtest-download
+server = 1879
+measurement = download
+host = dummy.com
+
+++ upload_Telkom_SAIX_Randburg
+menu = Upload Telkom (Randburg)
+title = Upload to Telkom SA (SAIX) (Randburg, South Africa) [9.68 km]
+probe = speedtest-upload
+server = 1879
+measurement = upload
+host = dummy.com
+
+++ download_Seacom_Maputo
+menu = Download Seacom (Maputo)
+title = Download from Seacom Ltd (Maputo, Mozambique) [452.78 km]
+probe = speedtest-download
+server = 5896
+measurement = download
+host = dummy.com
+
+++ upload_Seacom_Maputo
+menu = Upload Seacom (Maputo)
+title = Upload to Seacom Ltd (Maputo, Mozambique) [452.78 km]
+probe = speedtest-upload
+server = 5896
+measurement = upload
+host = dummy.com
+
+++ download_Telkom_SAIX_Capetown
+menu = Download Telkom (Cape Town)
+title = Download from Telkom SA (SAIX) (Cape Town, South Africa) [1260.28 km]
+probe = speedtest-download
+server = 5896
+measurement = download
+host = dummy.com
+
+++ upload_Telkom__SAIX_Capetown
+menu = Upload Telkom (Cape Town)
+title = Upload to Telkom SA (SAIX) (Cape Town, South Africa) [1260.28 km]
+probe = speedtest-upload
+server = 5896
+measurement = upload
+host = dummy.com
+
+++ download_Seacom_London
+menu = Download Seacom (London)
+title = Download from Seacom Ltd (London, Great Britain) [9073.28 km]
+probe = speedtest-download
+server = 5911
+measurement = download
+host = dummy.com
+
+++ upload_Seacom_London
+menu = Upload Seacom (London)
+title = Upload to Seacom Ltd (London, Great Britain) [9073.28 km]
+probe = speedtest-upload
+server = 5911
+measurement = upload
+host = dummy.com
+
+++ download_InterNetX_Munich
+menu = Download InterNetX (Munich)
+title = Download from InterNetX GmbH (Munich, Germany) [8431.30 km]
+probe = speedtest-download
+server = 3932
+measurement = download
+host = dummy.com
+
+++ upload_InterNetX_Munich
+menu = Upload InterNetX (Munich)
+title = Upload to InterNetX GmbH (Munich, Germany) [8431.30 km]
+probe = speedtest-upload
+server = 3932
+measurement = upload
+host = dummy.com
+
+++ download_ISPnet_NewYorkCity
+menu = Download ISPNet (New York)
+title = Download from ISPnet, Inc (New York City, NY, United States) [12842.27 km]
+probe = speedtest-download
+server = 7170
+measurement = download
+host = dummy.com
+
+++ upload_ISPnet_NewYorkCity
+menu = Upload ISPNet (New York)
+title = Upload to ISPnet, Inc (New York City, NY, United States) [12842.27 km]
+probe = speedtest-upload
+server = 7170
+measurement = upload
+host = dummy.com
