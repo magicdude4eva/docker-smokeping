@@ -2,16 +2,6 @@ FROM phusion/baseimage:0.9.18
 MAINTAINER MagicDude4Eva, https://github.com/magicdude4eva/docker-smokeping
 
 # ========================================================================================
-# Adjust syslog-ng
-RUN \
-    # Update repository and install syslog-ng
-    apt-get update \
-&&  apt-get install -y syslog-ng \
-    # Adjusting SyslogNG - see https://github.com/phusion/baseimage-docker/pull/223/commits/dda46884ed2b1b0f7667b9cc61a961e24e910784
-&&  sed -ie "s/^       system();$/#      system(); #This is to avoid calls to \/proc\/kmsg inside docker/g" /etc/syslog-ng/syslog-ng.conf
-
-
-# ========================================================================================
 # ====== PhantomJS
 # Dependencies we just need for building phantomjs
 ENV buildDependencies \
@@ -56,7 +46,7 @@ RUN \
 &&  apt-get purge -yqq ${buildDependencies} \
 &&  apt-get autoremove -yqq \
 &&  apt-get clean \
-&&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+&&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /phantomjs \
     # Checking if phantom works
 &&  phantomjs -v
 
@@ -76,6 +66,7 @@ RUN \
 &&  ln -s /etc/smokeping/apache2.conf /etc/apache2/conf-available/apache2.conf \
 &&  a2enconf apache2 \
 &&  a2enmod cgid \
+&&  apt-get autoremove -y \
 &&  apt-get clean \
 &&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -120,6 +111,19 @@ RUN \
 RUN \
     curl -L -o /usr/local/bin/speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
 &&  chmod a+x /usr/local/bin/speedtest-cli
+
+
+# ========================================================================================
+# Adjust syslog-ng / cleanup
+RUN \
+    # Update repository and install syslog-ng
+    apt-get update \
+&&  apt-get install -y syslog-ng \
+    # Adjusting SyslogNG - see https://github.com/phusion/baseimage-docker/pull/223/commits/dda46884ed2b1b0f7667b9cc61a961e24e910784
+&&  sed -ie "s/^       system();$/#      system(); #This is to avoid calls to \/proc\/kmsg inside docker/g" /etc/syslog-ng/syslog-ng.conf \
+&&  apt-get autoremove -y \
+&&  apt-get clean 
+
 
 
 # Use baseimage-docker's init system
