@@ -1,5 +1,8 @@
 # magicdude4eva/smokeping
+[![](https://images.microbadger.com/badges/image/magicdude4eva/smokeping.svg)](https://microbadger.com/images/magicdude4eva/smokeping "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/magicdude4eva/smokeping.svg)](https://microbadger.com/images/magicdude4eva/smokeping "Get your own version badge on microbadger.com")
+
 Smokeping keeps track of your network latency. For a full example of what this application is capable of visit [UCDavis](http://smokeping.ucdavis.edu/cgi-bin/smokeping.fcgi). The Smokeping Docker image includes the latest version of Smokeping, speedtest-cli and PhantomJS.
+
 
 [![smokeping](http://oss.oetiker.ch/smokeping/inc/smokeping-logo.png)][smokeurl]
 [smokeurl]: http://oss.oetiker.ch/smokeping/
