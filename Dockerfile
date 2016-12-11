@@ -125,7 +125,6 @@ RUN \
 &&  apt-get clean 
 
 
-
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
 
