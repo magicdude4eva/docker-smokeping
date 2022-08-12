@@ -1,55 +1,38 @@
-FROM phusion/baseimage:0.9.18
-MAINTAINER MagicDude4Eva, https://github.com/magicdude4eva/docker-smokeping
+FROM phusion/baseimage:master-amd64
+LABEL maintainer "MagicDude4Eva, https://github.com/magicdude4eva/docker-smokeping"
 
+ENV OPENSSL_CONF="/etc/ssl/"
 # ========================================================================================
 # ====== PhantomJS
-# Dependencies we just need for building phantomjs
-ENV buildDependencies \
-    bison \
-    build-essential \
-    flex \
-    g++ \
-    git \
-    gperf \
-    libpng-dev \
-    libsqlite3-dev \
-    libssl-dev \
-    perl \
-    ruby \
-    unzip \
-    wget 
-
 # Dependencies we need for running phantomjs
 ENV phantomJSDependencies \
-    libfontconfig1-dev \
+    curl \
+    fontconfig \
+    fonts-dejavu-extra \
     libfreetype6 \
-    libicu-dev \
-    libjpeg-dev \
     openssl \
-    python
+    python \
+    unzip
   
-ENV phantomVersion 2.1.1
-
-# Compiling and installing PhantomJS
+# Downloading PhantomJS pre-built
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN \
     # Installing dependencies
-    apt-get update -yqq \
-&&  apt-get install -fyqq ${buildDependencies} ${phantomJSDependencies}\
-    # Downloading src, unzipping & removing zip
+    apt-get update -y \
+&&  apt-get install -y apt-utils \    
+&&  apt-get install -fy ${phantomJSDependencies} \
+&&  fc-cache -fv \
+    # Downloading, unzipping & removing zip
 &&  mkdir phantomjs \
 &&  cd phantomjs \
-&&  git clone https://github.com/ariya/phantomjs.git . \
-&&  git checkout ${phantomVersion} \
-&&  ./build.py --confirm --release --git-clean-qtbase --git-clean-qtwebkit \
-&&  cp bin/phantomjs /usr/bin/phantomjs \
+&&  curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | tar -xj \
+&&  cp /phantomjs/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs \
     # Removing build dependencies, clean temporary files
-&&  apt-get purge -yqq ${buildDependencies} \
 &&  apt-get autoremove -yqq \
 &&  apt-get clean \
 &&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /phantomjs \
     # Checking if phantom works
 &&  phantomjs -v
-
 # ========================================================================================
 
 
@@ -61,8 +44,7 @@ ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" TERM="xterm" APACHE_LOG_DIR="/
 # Applying stuff
 RUN \
     apt-get update \
-&&  apt-get install -y apache2 fping smokeping ssmtp syslog-ng ttf-dejavu unzip \
-&&  rm /etc/ssmtp/ssmtp.conf \
+&&  apt-get install -y apache2 fping smokeping msmtp syslog-ng ttf-dejavu unzip \
 &&  ln -s /etc/smokeping/apache2.conf /etc/apache2/conf-available/apache2.conf \
 &&  a2enconf apache2 \
 &&  a2enmod cgid \
@@ -81,7 +63,7 @@ ADD Probes /tmp/Probes
 ADD Slaves /tmp/Slaves
 ADD Targets /tmp/Targets
 ADD pathnames /tmp/pathnames
-ADD ssmtp.conf /tmp/ssmtp.conf
+ADD msmtprc /tmp/msmtprc
 ADD config /etc/smokeping/config
 RUN chmod -v +x /etc/service/*/run
 RUN chmod -v +x /etc/my_init.d/*.sh
