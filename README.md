@@ -9,7 +9,7 @@ ___
 
 Smokeping keeps track of your network latency. For a full example of what this application is capable of visit [UCDavis](http://smokeping.ucdavis.edu/cgi-bin/smokeping.fcgi). The Smokeping Docker image includes the latest version of Smokeping, speedtest-cli and PhantomJS.
 
-![Smokeping Docker](https://github.com/magicdude4eva/docker-smokeping/raw/master/docker-smokeping.png)
+![Smokeping Docker](https://github.com/magicdude4eva/docker-smokeping/raw/main/docker-smokeping.png)
 
 ## TL;DR - Features
 * Latest version of Smokeping (https://github.com/oetiker/SmokePing)
